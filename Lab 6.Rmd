@@ -1,0 +1,32 @@
+---
+title: "Lab 6"
+author: "Isabelle Radis"
+date: "11/7/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 1. load packages
+```{r}
+library(tidyverse)
+hp_data<-read_csv("harry_potter_aggression_full.csv")
+```
+
+ 
+ 2. Bassic wrnaling and make a graph of harry potter and drao malfy aggression rates
+ 
+```{r}
+hp_graph<- hp_data %>% 
+  filter(Name=="Harry" | Name=="Draco Malfoy") %>% 
+  select(Name, book, agg.per.mention) %>% 
+  ggplot(aes(x=book,y= agg.per.mention))+
+  geom_col(aes(fill=Name), position="dodge")+
+coord_flip()
+
+hp_graph
+  
+```
+ 
+ 
